@@ -20,3 +20,8 @@ while alumno != "":  # Mientras el nombre del alumno no esté vacío
 print("Alumnos y sus notas:")
 for nombre, nota in alumnos.items():
     print(f"Alumno: {nombre}, Nota: {nota}")
+
+# Persistencia de datos: Guardar los datos en un archivo
+with open("notas.txt", "w") as archivo:
+    for nombre, nota in alumnos.items():
+        archivo.write(f"{nombre},{nota}\n")
