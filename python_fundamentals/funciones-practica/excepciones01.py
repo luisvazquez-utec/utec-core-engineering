@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
 
+from pathlib import Path
+
+from lecturanotas import leer_notas
+
 alumnos = {}  # Diccionario para almacenar los alumnos y sus notas
+archivo_notas = Path(__file__).with_name("notas.txt")
+alumnos_cargados = leer_notas(archivo_notas)
+formato_valido = alumnos_cargados is not None
+if alumnos_cargados is not None:
+    alumnos.update(alumnos_cargados)
 
 
 alumno = input("Ingrese el nombre del alumno: ")
@@ -22,6 +31,9 @@ for nombre, nota in alumnos.items():
     print(f"Alumno: {nombre}, Nota: {nota}")
 
 # Persistencia de datos: Guardar los datos en un archivo
-with open("notas.txt", "w") as archivo:
-    for nombre, nota in alumnos.items():
-        archivo.write(f"{nombre},{nota}\n")
+if formato_valido:
+    with open(archivo_notas, "w", encoding="utf-8") as archivo:
+        for nombre, nota in alumnos.items():
+            archivo.write(f"{nombre},{nota}\n")
+else:
+    print("No se guardaron los cambios para conservar el archivo original.")
