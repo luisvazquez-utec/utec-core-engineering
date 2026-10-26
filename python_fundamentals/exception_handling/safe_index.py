@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-"""Access a sequence by index while handling invalid indices."""
+"""Accede a una secuencia por índice y gestiona los índices no válidos."""
 
 
 def safe_index(sequence, index, default=None):
-    """Return the indexed value, or default when the index is out of range."""
+    """Devuelve el valor del índice o el valor predeterminado si está fuera
+    de rango.
+    """
     try:
         return sequence[index]
     except IndexError:

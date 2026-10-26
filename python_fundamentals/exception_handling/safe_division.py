@@ -3,7 +3,9 @@
 
 
 def safe_division(dividend, divisor):
-    """Return the quotient or raise a clear error for invalid operands."""
+    """Devuelve el cociente o lanza un error claro si los operandos
+    no son válidos.
+    """
     try:
         quotient = dividend / divisor
     except ZeroDivisionError as error:

@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Read the first line of a file and always close the file."""
+"""Lee la primera línea de un archivo y siempre lo cierra."""
 
 import sys
 
 
 def read_first_line(path):
-    """Return the first line without its trailing newline."""
+    """Devuelve la primera línea sin el salto de línea final."""
     file_object = open(path, encoding="utf-8")
     try:
         return file_object.readline().rstrip("\n")

@@ -16,6 +16,13 @@ inesperados.
 
 ## Ejercicios
 
+- `safe_print_integer.py`: imprime un valor con formato entero y devuelve
+  `False` si no se puede representar como entero.
+- `safe_print_list_integers.py`: imprime solo los enteros de los primeros
+  `x` elementos y devuelve cuántos imprimió. Si `x` supera el tamaño de la
+  lista, propaga `IndexError`.
+- `safe_print_list.py`: imprime hasta una cantidad indicada de elementos sin
+  usar `len()` y maneja el fin de la lista con `try` y `except`.
 - `safe_division.py`: distingue la división por cero de operandos incompatibles.
 - `safe_lookup.py`: comunica claramente una clave ausente o un objeto no
   indexable como diccionario.
@@ -29,10 +36,35 @@ inesperados.
 Cada archivo incluye una función que se puede importar y una demostración
 ejecutable. Por ejemplo:
 
+Desde la carpeta `python_fundamentals/exception_handling`:
+
 ```sh
 python3 safe_division.py
 python3 read_first_line.py README.md
 ```
+
+Desde la raíz del repositorio, usa la ruta relativa de la carpeta:
+
+```sh
+python3 python_fundamentals/exception_handling/safe_division.py
+python3 python_fundamentals/exception_handling/read_first_line.py python_fundamentals/exception_handling/README.md
+```
+
+Para probar `safe_print_list` interactivamente desde la raíz, inicia Python e
+importa la función antes de llamarla:
+
+```pycon
+>>> from python_fundamentals.exception_handling.safe_print_list import safe_print_list
+>>> mi_lista = [10, 20, 30]
+>>> resultado = safe_print_list(mi_lista, 5)
+102030
+>>> print("resultado:", resultado)
+resultado: 3
+```
+
+En PowerShell, escribe primero `py -3` para abrir el intérprete de Python. Las
+asignaciones y llamadas de Python se escriben después del indicador `>>>`, no
+directamente en el indicador `PS>`.
 
 ## `else` y `finally`
 

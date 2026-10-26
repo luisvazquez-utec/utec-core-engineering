@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Look up a key and report missing keys explicitly."""
+"""Busca una clave e informa explícitamente si no existe."""
 
 
 def safe_lookup(mapping, key):
-    """Return the value for key or raise a descriptive exception."""
+    """Devuelve el valor de la clave o lanza una excepción descriptiva."""
     try:
         return mapping[key]
     except KeyError as error:

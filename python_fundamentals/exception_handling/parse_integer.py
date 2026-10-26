@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-"""Convert a value to an integer with a clear error message."""
+"""Convierte un valor a entero y muestra un error claro si no es válido."""
 
 
 def parse_integer(value):
-    """Return value as an integer or raise ValueError for invalid input."""
+    """Devuelve el valor como entero o lanza ValueError si la entrada
+    no es válida.
+    """
     try:
         number = int(value)
     except (TypeError, ValueError) as error:
