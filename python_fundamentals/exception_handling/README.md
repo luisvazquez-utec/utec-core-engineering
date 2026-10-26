@@ -24,6 +24,8 @@ inesperados.
 - `safe_print_list.py`: imprime hasta una cantidad indicada de elementos sin
   usar `len()` y maneja el fin de la lista con `try` y `except`.
 - `safe_division.py`: distingue la división por cero de operandos incompatibles.
+- `raise_exception.py` y `raise_exception_msg.py`: lanzan excepciones explícitas
+  con mensajes fijos o personalizados.
 - `safe_lookup.py`: comunica claramente una clave ausente o un objeto no
   indexable como diccionario.
 - `safe_index.py`: maneja índices fuera de rango y valida el tipo de índice.
