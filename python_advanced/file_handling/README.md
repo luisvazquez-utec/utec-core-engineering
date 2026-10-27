@@ -9,6 +9,8 @@ en UTF-8.
   `with` y muestra su contenido sin modificarlo.
 - `write_file.py`: define `write_file(filename="", text="")`, que escribe el
   texto en el archivo usando `with` y devuelve el número de caracteres escritos.
+- `append_write.py`: define `append_write(filename="", text="")`, que añade el
+  texto al final del archivo usando `with` y devuelve los caracteres añadidos.
 
 ## Requisitos
 
