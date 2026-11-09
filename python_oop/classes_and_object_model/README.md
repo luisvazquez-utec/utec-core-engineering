@@ -55,3 +55,9 @@ exercises.
 
 `5-square.py` adds `my_print()` to print the square using `#` characters.
 When the size is `0`, it prints an empty line.
+
+## 6. Positioned square representation
+
+`6-square.py` adds a validated `position` property and `__str__()` so printing
+the instance renders its square with the requested spaces and leading lines.
+`my_print()` uses the same representation.
