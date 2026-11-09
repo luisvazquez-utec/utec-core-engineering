@@ -54,4 +54,4 @@ exercises.
 ## 5. Print a square
 
 `5-square.py` adds `my_print()` to print the square using `#` characters.
-When the size is `0`, it prints no characters.
+When the size is `0`, it prints an empty line.
