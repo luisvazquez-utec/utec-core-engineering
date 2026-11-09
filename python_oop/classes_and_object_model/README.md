@@ -17,3 +17,20 @@ print(my_square.__dict__)
 ```
 
 The instance has no attributes, so its `__dict__` is `{}`.
+
+## 1. Square with size
+
+`1-square.py` defines a `Square` whose size is stored in the private instance
+attribute `__size`.
+
+Example:
+
+```python
+Square = __import__("1-square").Square
+
+my_square = Square(3)
+print(my_square.__dict__)
+```
+
+The instance dictionary contains `{'_Square__size': 3}`. The private attribute
+is not available as `size` or `__size` through normal attribute access.
