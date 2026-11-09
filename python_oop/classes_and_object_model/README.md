@@ -44,3 +44,9 @@ negative values.
 
 `3-square.py` adds the `area()` instance method, which returns the square of
 the validated size.
+
+## 4. Private size accessors
+
+`4-square.py` exposes `size` through a property getter and setter. The setter
+enforces the same integer and non-negative size rules used by earlier
+exercises.
