@@ -67,3 +67,8 @@ the instance renders its square with the requested spaces and leading lines.
 `1-rectangle.py` defines a `Rectangle` with validated private `width` and
 `height` properties. Both dimensions default to `0` and must be non-negative
 integers.
+
+## Rectangle: area and perimeter
+
+`2-rectangle.py` adds methods to calculate a rectangle's area and perimeter.
+The perimeter is `0` whenever either dimension is `0`.
