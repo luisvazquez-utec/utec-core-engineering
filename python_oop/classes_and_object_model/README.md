@@ -61,3 +61,9 @@ When the size is `0`, it prints an empty line.
 `6-square.py` adds a validated `position` property and `__str__()` so printing
 the instance renders its square with the requested spaces and leading lines.
 `my_print()` uses the same representation.
+
+## Rectangle: private dimensions
+
+`1-rectangle.py` defines a `Rectangle` with validated private `width` and
+`height` properties. Both dimensions default to `0` and must be non-negative
+integers.
