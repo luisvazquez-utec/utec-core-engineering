@@ -50,3 +50,8 @@ the validated size.
 `4-square.py` exposes `size` through a property getter and setter. The setter
 enforces the same integer and non-negative size rules used by earlier
 exercises.
+
+## 5. Print a square
+
+`5-square.py` adds `my_print()` to print the square using `#` characters.
+When the size is `0`, it prints no characters.
