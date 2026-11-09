@@ -34,3 +34,8 @@ print(my_square.__dict__)
 
 The instance dictionary contains `{'_Square__size': 3}`. The private attribute
 is not available as `size` or `__size` through normal attribute access.
+
+## 2. Size validation
+
+`2-square.py` defaults the size to `0`, requires an integer, and rejects
+negative values.
