@@ -9,13 +9,26 @@ MAX_ERRORS = 6
 class HangmanGame:
     """Track guesses and determine whether a Hangman round has ended."""
 
-    def __init__(self, phrase):
-        """Initialize a round with a phrase containing at least one letter."""
-        if not phrase or not any(character.isalpha() for character in phrase):
-            raise ValueError("phrase must contain at least one letter")
-        self.phrase = phrase
-        self.guessed_letters = set()
-        self.incorrect_guesses = 0
+    def __init__(self, word):
+        """Initialize a round with a word containing at least one letter."""
+        if not word or not any(character.isalpha() for character in word):
+            raise ValueError("word must contain at least one letter")
+        self.word = word
+        self.guessed_letters = []
+        self.max_errors = MAX_ERRORS
+        self.errors = 0
+
+    def display_progress(self):
+        """Print guessed letters in place and hide the remaining letters."""
+        progress = []
+        for character in self.word:
+            if not character.isalpha():
+                progress.append(character)
+            elif character.lower() in self.guessed_letters:
+                progress.append(character)
+            else:
+                progress.append("_")
+        print(" ".join(progress))
 
     def guess(self, letter):
         """Record a new letter; return correctness or None for a repeat."""
@@ -26,25 +39,25 @@ class HangmanGame:
         if letter in self.guessed_letters:
             return None
 
-        self.guessed_letters.add(letter)
-        if letter not in self.phrase.lower():
-            self.incorrect_guesses += 1
+        self.guessed_letters.append(letter)
+        if letter not in self.word.lower():
+            self.errors += 1
             return False
         return True
 
     @property
     def is_won(self):
-        """Return whether every letter in the phrase has been guessed."""
+        """Return whether every letter in the word has been guessed."""
         return all(
             not character.isalpha()
             or character.lower() in self.guessed_letters
-            for character in self.phrase
+            for character in self.word
         )
 
     @property
     def is_lost(self):
         """Return whether the maximum number of incorrect guesses is reached."""
-        return self.incorrect_guesses >= MAX_ERRORS
+        return self.errors >= self.max_errors
 
     @property
     def is_over(self):

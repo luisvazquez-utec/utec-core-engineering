@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """Run the Hangman game from the command line."""
 
-from game import HangmanGame, MAX_ERRORS
+from game import HangmanGame
 from utils import (
-    display_word,
     format_guessed_letters,
     get_random_word,
     is_valid_guess,
@@ -11,15 +10,14 @@ from utils import (
 
 
 def display_status(game):
-    """Print the current phrase, guesses, and remaining error allowance."""
-    print("Phrase: {}".format(display_word(
-        game.phrase, game.guessed_letters
-    )))
+    """Print the current word, guesses, and error count."""
+    print("Word:")
+    game.display_progress()
     print("Guessed letters: {}".format(
         format_guessed_letters(game.guessed_letters)
     ))
     print("Incorrect guesses: {}/{}".format(
-        game.incorrect_guesses, MAX_ERRORS
+        game.errors, game.max_errors
     ))
 
 
@@ -42,9 +40,9 @@ def main():
         display_status(game)
 
     if game.is_won:
-        print("You win! The phrase was: {}".format(game.phrase))
+        print("You win! The word was: {}".format(game.word))
     else:
-        print("Game over! The phrase was: {}".format(game.phrase))
+        print("Game over! The word was: {}".format(game.word))
 
 
 if __name__ == "__main__":
