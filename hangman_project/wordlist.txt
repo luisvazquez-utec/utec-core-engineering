@@ -1,0 +1,15 @@
+elephant
+giraffe
+penguin
+dolphin
+tiger
+butterfly
+mountain
+rainbow
+computer
+keyboard
+adventure
+python
+inheritance
+polymorphism
+geometry
