@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Provide input validation and display helpers for Hangman."""
+"""Proporciona selección de palabras y utilidades para el ahorcado."""
 
 import random
 from pathlib import Path
 
 
 def get_random_word():
-    """Return a random alphabetic word from wordlist.txt."""
+    """Devuelve una palabra alfabética aleatoria de wordlist.txt."""
     wordlist_path = Path(__file__).with_name("wordlist.txt")
     words = [
         line.strip()
@@ -14,17 +14,19 @@ def get_random_word():
         if line.strip().isalpha()
     ]
     if not words:
-        raise ValueError("wordlist.txt must contain at least one alphabetic word")
+        raise ValueError(
+            "wordlist.txt debe contener al menos una palabra alfabética"
+        )
     return random.choice(words)
 
 
 def is_valid_guess(guess):
-    """Return whether guess is exactly one alphabetic character."""
+    """Indica si la entrada contiene exactamente una letra."""
     return len(guess) == 1 and guess.isalpha()
 
 
 def display_word(phrase, guessed_letters):
-    """Hide unguessed letters while revealing spaces and punctuation."""
+    """Oculta letras pendientes y revela espacios y signos de puntuación."""
     return "".join(
         character
         if not character.isalpha()
@@ -35,5 +37,5 @@ def display_word(phrase, guessed_letters):
 
 
 def format_guessed_letters(guessed_letters):
-    """Return guessed letters in a consistent, readable order."""
-    return ", ".join(sorted(guessed_letters)) or "none"
+    """Devuelve las letras intentadas en un orden legible y consistente."""
+    return ", ".join(sorted(guessed_letters)) or "ninguna"

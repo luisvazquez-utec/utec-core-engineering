@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run the Hangman game from the command line."""
+"""Ejecuta el juego del ahorcado desde la línea de comandos."""
 
 from game import HangmanGame
 from utils import (
@@ -10,32 +10,32 @@ from utils import (
 
 
 def display_status(game):
-    """Print the current word, guessed letters, and remaining attempts."""
-    print("Word:")
+    """Muestra la palabra, las letras intentadas y los intentos restantes."""
+    print("Palabra:")
     game.display_progress()
-    print("Guessed letters: {}".format(
+    print("Letras intentadas: {}".format(
         format_guessed_letters(game.guessed_letters)
     ))
-    print("Attempts remaining: {}".format(game.max_errors - game.errors))
+    print("Intentos restantes: {}".format(game.max_errors - game.errors))
 
 
 def main():
-    """Run one interactive Hangman round."""
+    """Ejecuta una ronda interactiva del ahorcado."""
     game = HangmanGame(get_random_word())
-    print("Welcome to Hangman!")
+    print("¡Bienvenido al ahorcado!")
 
     while not game.is_over:
-        guess = input("Guess a letter: ").lower()
+        guess = input("Adivina una letra: ").lower()
         if not is_valid_guess(guess):
-            print("Enter a single letter.")
+            print("Ingresa una sola letra.")
             continue
 
         if guess in game.guessed_letters:
-            print("You already guessed that letter.")
+            print("Ya intentaste esa letra.")
             continue
 
         if not game.process_guess(guess):
-            print("That letter is not in the phrase.")
+            print("La palabra no contiene esa letra.")
         display_status(game)
 
     if game.is_won():

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Define the state and rules for a Hangman game."""
+"""Define el estado y las reglas de una partida de ahorcado."""
 
 from utils import is_valid_guess
 
@@ -7,19 +7,19 @@ MAX_ERRORS = 6
 
 
 class HangmanGame:
-    """Track guesses and determine whether a Hangman round has ended."""
+    """Registra las adivinanzas y determina cuándo termina la partida."""
 
     def __init__(self, word):
-        """Initialize a round with a word containing at least one letter."""
+        """Inicia una partida con una palabra que contenga alguna letra."""
         if not word or not any(character.isalpha() for character in word):
-            raise ValueError("word must contain at least one letter")
+            raise ValueError("la palabra debe contener al menos una letra")
         self.word = word
         self.guessed_letters = []
         self.max_errors = MAX_ERRORS
         self.errors = 0
 
     def display_progress(self):
-        """Print guessed letters in place and hide the remaining letters."""
+        """Muestra las letras acertadas y oculta las que faltan."""
         progress = []
         for character in self.word:
             if not character.isalpha():
@@ -31,9 +31,9 @@ class HangmanGame:
         print(" ".join(progress))
 
     def process_guess(self, letter):
-        """Record a letter and return whether it occurs in the word."""
+        """Registra una letra e indica si aparece en la palabra."""
         if not is_valid_guess(letter):
-            raise ValueError("guess must be a single letter")
+            raise ValueError("la adivinanza debe ser una sola letra")
 
         letter = letter.lower()
         if letter in self.guessed_letters:
@@ -46,14 +46,14 @@ class HangmanGame:
         return True
 
     def guess(self, letter):
-        """Record a new guess, preserving None as the result for repeats."""
+        """Registra una letra nueva y devuelve None si ya fue intentada."""
         normalized_letter = letter.lower() if isinstance(letter, str) else letter
         if normalized_letter in self.guessed_letters:
             return None
         return self.process_guess(letter)
 
     def is_won(self):
-        """Return whether every letter in the word has been guessed."""
+        """Indica si ya se adivinaron todas las letras de la palabra."""
         return all(
             not character.isalpha()
             or character.lower() in self.guessed_letters
@@ -61,10 +61,10 @@ class HangmanGame:
         )
 
     def is_lost(self):
-        """Return whether the maximum number of incorrect guesses is reached."""
+        """Indica si se alcanzó el máximo de errores permitidos."""
         return self.errors >= self.max_errors
 
     @property
     def is_over(self):
-        """Return whether the player has won or lost."""
+        """Indica si la partida terminó por victoria o derrota."""
         return self.is_won() or self.is_lost()
