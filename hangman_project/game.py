@@ -30,14 +30,14 @@ class HangmanGame:
                 progress.append("_")
         print(" ".join(progress))
 
-    def guess(self, letter):
-        """Record a new letter; return correctness or None for a repeat."""
+    def process_guess(self, letter):
+        """Record a letter and return whether it occurs in the word."""
         if not is_valid_guess(letter):
             raise ValueError("guess must be a single letter")
 
         letter = letter.lower()
         if letter in self.guessed_letters:
-            return None
+            return letter in self.word.lower()
 
         self.guessed_letters.append(letter)
         if letter not in self.word.lower():
@@ -45,7 +45,13 @@ class HangmanGame:
             return False
         return True
 
-    @property
+    def guess(self, letter):
+        """Record a new guess, preserving None as the result for repeats."""
+        normalized_letter = letter.lower() if isinstance(letter, str) else letter
+        if normalized_letter in self.guessed_letters:
+            return None
+        return self.process_guess(letter)
+
     def is_won(self):
         """Return whether every letter in the word has been guessed."""
         return all(
@@ -54,7 +60,6 @@ class HangmanGame:
             for character in self.word
         )
 
-    @property
     def is_lost(self):
         """Return whether the maximum number of incorrect guesses is reached."""
         return self.errors >= self.max_errors
@@ -62,4 +67,4 @@ class HangmanGame:
     @property
     def is_over(self):
         """Return whether the player has won or lost."""
-        return self.is_won or self.is_lost
+        return self.is_won() or self.is_lost()

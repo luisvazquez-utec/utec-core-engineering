@@ -10,15 +10,13 @@ from utils import (
 
 
 def display_status(game):
-    """Print the current word, guesses, and error count."""
+    """Print the current word, guessed letters, and remaining attempts."""
     print("Word:")
     game.display_progress()
     print("Guessed letters: {}".format(
         format_guessed_letters(game.guessed_letters)
     ))
-    print("Incorrect guesses: {}/{}".format(
-        game.errors, game.max_errors
-    ))
+    print("Attempts remaining: {}".format(game.max_errors - game.errors))
 
 
 def main():
@@ -27,22 +25,23 @@ def main():
     print("Welcome to Hangman!")
 
     while not game.is_over:
-        guess = input("Guess a letter: ").strip().lower()
+        guess = input("Guess a letter: ").lower()
         if not is_valid_guess(guess):
             print("Enter a single letter.")
             continue
 
-        result = game.guess(guess)
-        if result is None:
+        if guess in game.guessed_letters:
             print("You already guessed that letter.")
-        elif not result:
+            continue
+
+        if not game.process_guess(guess):
             print("That letter is not in the phrase.")
         display_status(game)
 
-    if game.is_won:
-        print("You win! The word was: {}".format(game.word))
+    if game.is_won():
+        print("¡Ganaste! La palabra era: {}".format(game.word))
     else:
-        print("Game over! The word was: {}".format(game.word))
+        print("Fin del juego. La palabra era: {}".format(game.word))
 
 
 if __name__ == "__main__":
